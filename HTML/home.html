@@ -10,13 +10,19 @@
 <body>
     <!-- headrer-->
      <header>
-        <nav>
-            <a href="" class="navBar">MOBILE STORE
+        <nav class="navBar">
+            <h3 class="navBarHeading">MOBILE STORE</h3>
+            <a href="bookNowCart.html" >
             <i class="bx bx-shopping-bag bagIcon"></i></a>
         </nav>
         <!-- <i class="bx bx-shopping-bag"></i> -->
      </header>
-     <box-icon type='solid' name='castle'></box-icon> 
+     <div>
+        <h6><a href="/TODO/chnage.html" target="_blank">TODO</a></h6>
+     </div>
+    
+
+     <!-- <box-icon type='solid' name='castle'></box-icon>  -->
      <!-- section  -->
      <div>
         <p class="headingText">SHOPPING PRODUCTS</p>
@@ -26,18 +32,22 @@
         <div class="card">
             <img src="/IMAGES/iphone-14.jpg" class="cardImage" alt="I PHONE 14 IAMGE"  title="I PHONE 14">
             <div class="cardInfo">
-                <h3 class="cardHeading">I PHONE 14</h3>
+                <h3 class="cardHeading item1">I PHONE 14</h3>
                 <p class="cardData">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dignissimos, assumenda!</p>
                 <span class="itemPrice">120000₹</span>
+                <button class="add" onclick="clicked()" >Add</button>
+                <input type="number" name="quantity" id="" placeholder="Enter Quantity">
             <!-- <i class="bx bx-shopping-bag"></i> -->
         </div>
     </div>
     <div class="card">
         <img src="/IMAGES/nothing.jpg" class="cardImage" alt="NOTHING IAMGE"  title="NOTHING">
         <div class="cardInfo">
-            <h3 class="cardHeading">NOTHING</h3>
+            <h3 class="cardHeading item2" >NOTHING</h3>
             <p class="cardData">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dignissimos, assumenda!</p>
-            <span class="itemPrice">30000₹</span>
+            <span class="itemPrice" >30000₹</span>
+            <button class="add" onclick="getItemPrice()" >Add</button>
+            <input type="number" name="quantity" id="" placeholder="Enter Quantity">
             <!-- <i class="bx bx-shopping-bag"></i> -->
         </div>
         </div>
@@ -45,18 +55,22 @@
         
             <img src="/IMAGES/oneplus nord ce 2 lite.jpg" class="cardImage" alt="ONEPLUS NORD CE 2 LITE IAMGE"  title="ONEPLUS NORD CE 2 LITE">
             <div class="cardInfo">
-            <h3 class="cardHeading">ONEPLUS NORD CE 2 LITE</h3>
+            <h3 class="cardHeading item3">ONEPLUS NORD CE 2 LITE</h3>
             <p class="cardData">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dignissimos, assumenda!</p>
             <span class="itemPrice">25000₹</span>
+            <button class="add" onclick="getItemPrice()">Add</button>
+            <input type="number" name="quantity" id="" placeholder="Enter Quantity">
             <!-- <i class="bx bx-shopping-bag"></i> -->
         </div>
     </div>
     <div class="card">
         <img src="/IMAGES/pixel 7a.jpg" class="cardImage" alt="PIXEL 7A"  title="PIXEL 7A">
         <div class="cardInfo">
-            <h3 class="cardHeading">PIXEL 7A</h3>
+            <h3 class="cardHeading item4">PIXEL 7A</h3>
             <p class="cardData">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dignissimos, assumenda!</p>
             <span class="itemPrice">50000₹</span>
+            <button class="add">Add</button>
+            <input type="number" name="quantity" id="" placeholder="Enter Quantity">
             <!-- <i class="bx bx-shopping-bag"></i> -->
         </div>
     </div>
@@ -64,9 +78,11 @@
          
         <img src="/IMAGES/poco x5.jpg" class="cardImage" alt="POCO X5"  title="POCO X5">
         <div class="cardInfo">
-            <h3 class="cardHeading">POCO X5</h3>
+            <h3 class="cardHeading item5">POCO X5</h3>
             <p class="cardData">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dignissimos, assumenda!</p>
             <span class="itemPrice">23000₹</span>
+            <button class="add">Add</button>
+            <input type="number" name="quantity" id="" placeholder="Enter Quantity">
             <!-- <i class="bx bx-shopping-bag"></i> -->
         </div>
     </div>
@@ -74,9 +90,11 @@
          
         <img src="/IMAGES/realme c55.jpg" class="cardImage" alt="REALME C55"  title="REALME C55">
         <div class="cardInfo">
-            <h3 class="cardHeading">REALME C55</h3>
+            <h3 class="cardHeading item6">REALME C55</h3>
             <p class="cardData">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dignissimos, assumenda!</p>
             <span class="itemPrice">18000₹</span>
+            <button class="add">Add</button>
+            <input type="number" name="quantity" id="" placeholder="Enter Quantity">
             <!-- <i class="bx bx-shopping-bag"></i> -->
         </div>
     </div>
@@ -84,9 +102,11 @@
          
         <img src="/IMAGES/reno 8T.jpg" class="cardImage" alt="RENO 8T"  title="RENO 8T">
         <div class="cardInfo">
-            <h3 class="cardHeading">RENO 8T</h3>
+            <h3 class="cardHeading item7">RENO 8T</h3>
             <p class="cardData">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dignissimos, assumenda!</p>
             <span class="itemPrice">34000₹</span>
+            <button class="add">Add</button>
+            <input type="number" name="quantity" id="" placeholder="Enter Quantity">
             <!-- <i class="bx bx-shopping-bag"></i> -->
         </div>
     </div>
@@ -94,9 +114,11 @@
          
         <img src="/IMAGES/vivo-T2X.jpg" class="cardImage" alt="VIVO T2X"  title="VIVO T2X">
         <div class="cardInfo">
-            <h3 class="cardHeading">VIVO T2X</h3>
+            <h3 class="cardHeading item8">VIVO T2X</h3>
             <p class="cardData">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dignissimos, assumenda!</p>
             <span class="itemPrice">19000₹</span>
+            <button class="add">Add</button>
+            <input type="number" name="quantity" id="" placeholder="Enter Quantity">
             <!-- <i class="bx bx-shopping-bag"></i> -->
         </div>
     </div>
@@ -104,22 +126,26 @@
          
         <img src="/IMAGES/xiome-11T-pro.jpg" class="cardImage" alt="XIOME 11T PRO"  title="XIOME 11T PRO">
         <div class="cardInfo">
-            <h3 class="cardHeading">XIOME 11T PRO</h3>
+            <h3 class="cardHeading item9">XIOME 11T PRO</h3>
             <p class="cardData">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dignissimos, assumenda!</p>
             <span class="itemPrice">27000₹</span>
+            <button class="add">Add</button>
+            <input type="number" name="quantity" id="" placeholder="Enter Quantity">
             <!-- <i class="bx bx-shopping-bag"></i> -->
         </div>
     </div>
     <div class="card">
-         
         <img src="/IMAGES/oneplus nord ce 2 lite.jpg" class="cardImage" alt="ONEPLUS NORD CE 2 LITE"  title="ONEPLUS NORD CE 2 LITE">
         <div class="cardInfo">
-            <h3 class="cardHeading">ONEPLUS NORD CE 2 LITE</h3>
+            <h3 class="cardHeading item10">ONEPLUS NORD CE 2 LITE</h3>
             <p class="cardData">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dignissimos, assumenda!</p>
-            <span class="itemPrice">19000₹</span>
+            <span class="itemPrice">25000₹</span>
+            <button class="add">Add</button>
+            <input type="number" name="quantity" id="" placeholder="Enter Quantity">
             <!-- <i class="bx bx-shopping-bag"></i> -->
         </div>
     </div>
      </section>
+     <script src="/JS/script.js"></script>
 </body>
 </html>
