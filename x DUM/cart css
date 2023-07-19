@@ -1,0 +1,48 @@
+.itemContainer{
+    display: flex;
+    flex-wrap: wrap;
+    border: 2px solid red;
+    width: 70%;
+    margin: 40px 3px;
+    margin-left: 150px;
+    margin-right: 40px;
+    background-color: #ffffff;
+}
+.itemImage{
+
+}
+.itemName{
+    display: flex;
+    position: relative;
+    top: 13px;
+    font-size: 30px;
+    font-weight: bold;
+}
+.itemDescription{
+    display: flex;
+    position: relative;
+    right: 150px;
+    top: 70px;
+    border: 3px solid red;
+    width: 300px;
+    font-size: 20px;
+}
+.itemPrice{
+    display: flex;
+    position: relative;
+    right: 150px;
+    top: 70px;
+    border: 3px solid red;
+    width: 300px;
+    font-size: 20px;
+}
+.image{
+    padding: 10px;
+    width: 200px;
+    height: 230px;
+    border-radius: 15%;
+
+}
+.quantityCounter{
+    display: block;
+}

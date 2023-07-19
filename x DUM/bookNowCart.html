@@ -4,39 +4,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Book Now</title>
-    <link rel="stylesheet" href="/CSS/cart.css">
+    <link rel="stylesheet" href="/CSS/BookNowCart.css">
 </head>
 <body>
     <div class="container">
-        <div class="bookingHead">
-            <h2>YOUR BOOKING ITEM</h2>
+        <nav class="itemNavBar">
+            <div class="bookingHead">
+                <p>YOUR BOOKING ITEM /S</p>
+            </div>
+            <div class="makeCircle">
+                <span class="xCrossMark"><a href="home.html">X</a></span>
+            </div>
+        </nav>
             <div class="bookingItems">
                <table class="itemTable">
+                <thead>
                     <tr>
                         <th class="tHeahName">NAME</th>
                         <th class="tHeahPrice">PRICE</th>
                         <th class="tHeahQuantity">QUANTUTY</th>
+                        <th class="tHeahAdded">REMOVE</th>
                     </tr>
+                    </thead>
+                    <tbody>
                     <tr>
                         <td>Null</td>
                         <td>0</td>
                         <td>0</td>
-                    </tr>
-                     <tr>
-                        <td>Null</td>
-                        <td>0</td>
-                        <td>0</td>
-                    </tr>
-                     <tr>
-                        <td>Null</td>
-                        <td>0</td>
-                        <td>0</td>
+                        <td><button class="remItemBtn" type="button">X</button></td>
                     </tr>
                     
+                </tbody>
                </table>
             </div>
-        </div>
     </div>
+    <button type="button">BOOK NOW</button>
     <script src="/JS/script.js"></script>
 </body>
 </html>

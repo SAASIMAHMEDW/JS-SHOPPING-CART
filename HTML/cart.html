@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CART</title>
+    <link rel="stylesheet" href="/CSS/cart.css">
+
+</head>
+
+<body>
+    <header>
+        <nav class="navBar">
+            <nav class="left">
+                <p>MOBILE STORE</p>
+            </nav>
+            <nav class="right">
+                <p>ORACLE</p>
+                <!-- <p>CHANGE ME<a href="home.html" class="crossX">X</a></p> -->
+
+            </nav>
+        </nav>
+    </header>
+    <div class="mainContainer">
+        <table>
+            <thead>
+                <tr>
+                    <th>PRODUCT</th>
+                    <th>QUANTITY</th>
+                    <th>SUB TOTAL</th>
+                </tr>
+            </thead>
+            <tbody id="mainCard" class="insertBeforeCart">
+                <tr class="cartContainer">
+                    <td>
+                        <div class="cartInfo">
+                            <img src="h">
+                            <div>
+                                <p> XX </p>
+                                <small>PRICE: <strong>XX</strong></small>
+                                <br>
+                                <button type="button" class="removeBTN" onclick="removeCard()">REM</button>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <button type="button" onclick="cartIncreaseQuantity()">▲</button>
+                        <span>5</span>
+                        <button type="button" onclick="cartDecreaseQuantity()">▼</button>
+                    </td>
+                    <td id="cartPrice">10</td>
+                </tr>
+            </tbody>
+        </table>
+        <!-- =========================== -->
+
+        <div class="totalPrice">
+            <table>
+                <tbody>
+                    <tr>
+                        <td>TOTAL</td>
+                        <td>₹XX</td>
+                    </tr>
+                    <tr>
+                        <td>BOOK NOW</td>
+                        <td><button type="button" onclick="booked()">BOOK</button></td>
+                    </tr> 
+                    <tr>
+                        <td>ADD NOW</td>
+                        <td><button type="button" onclick="setCartLocalStorage()">BOOK</button></td>
+                    </tr>
+                    <tr>
+                        <td>ADD MORE</td>
+                        <td><button type="button" onclick="setCard()">BOOK</button></td>
+                    </tr>
+                    </thead>
+            </table>
+        </div>
+    </div>
+    <script src="/JS/script.js"></script>
+    <!-- <script src="/JS/cart.js"></script> -->
+
+</body>
+
+</html>

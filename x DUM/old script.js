@@ -1,14 +1,20 @@
 
 // ======================= ORACLE ============================
-
+const dataItemList = [
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+]
 
 // ====================== HOME JS CONNECTION=============================
 let con = document.getElementById("data")
 let cards = document.getElementsByClassName("card")
 let counterConnectin = document.querySelector(".counter")
-let showCart = document.getElementById("toggleCart")
-let showCard = document.getElementById("cardItemShow")
-let finalPrice = document.querySelector(".priceLeft")
+let showIframe = document.getElementById("toggleCart")
 let toggleBlur = 0
 // let showIframe = document.querySelector(".frame")
 
@@ -45,11 +51,8 @@ let setCartQuantity
 
 function show(){
     // showIframe.style.display = "block";
-    showCart.classList.toggle("showHideCart")
-    // showCart.style.display = "block"
+    showIframe.classList.toggle("showHide")
     // counterConnectin.style.display = "none"
-    // console.log(showCart)
-    showCard.classList.toggle("hideShowCard")
 
 }
 
@@ -112,19 +115,20 @@ function getItem(){
     // dataItemList[0][2] = imgQuantity
     // dataItemList[0][3] = imgPrice
     // console.log(dataItemList[0])
-    // console.log(imgPrice)
+
     // ========== home cart counter ============
     let countrerNum = document.activeElement.parentNode.parentNode.children[1].children[6].textContent
     counterIcrem(countrerNum)
     // ========= cart clone ===========
-    createCart(imgSource,imgHeading,imgQuantity,imgPrice)
+    // createCart()
+    // ============== session storage ==============
+    setLocalStorageItemData(imgSource,imgHeading,imgQuantity,imgPrice)
 }
 
 
 // ======================== CART JS========s=====================
 
 function cartIncreaseQuantity(){
-
     let activeNodeINCR = document.activeElement.parentElement.children[1].textContent
     let activeNodeINCRX = document.activeElement.parentElement.children[1]
     let actualPrice = document.activeElement.parentElement.parentElement.children[0].children[0].children[1].children[1].children[0].textContent.replace("₹","")
@@ -137,36 +141,14 @@ function cartIncreaseQuantity(){
     let temp = Number.parseInt(activeNodeINCR)
     temp+=1
     activeNodeINCRX.textContent = temp
-    cartUpdationINCR()
-    totalPrice()
+    setCard()
+    
     
     
 }
 
-function totalPrice(){
-    let price = finalPrice
-    let actualPrice = document.activeElement.parentElement.parentElement.children[0].children[0].children[1].children[1].children[0].textContent.replace("₹","")
-    price.textContent = actualPrice + priceSymbol
-    
-}
-function priceIN(){
-     // ========= price dec=============
-     let actualPrice = document.activeElement.parentElement.parentElement.children[0].children[0].children[1].children[1].children[0].textContent.replace("₹","")
-     let finalSubPrice = document.activeElement.parentElement.parentElement.children[2].textContent.replace("₹","")
-     let finalSubPriceX = document.activeElement.parentElement.parentElement.children[2]
-     let priceTemp = (Number.parseInt(actualPrice))-(Number.parseInt(finalSubPrice))+priceSymbol
-     finalSubPriceX.textContent = priceTemp
-     if (finalSubPrice<=0) {
-         alert("cannot dec price")
-     }
-     // ===================================
-}
-
-
-function cartUpdationINCR(){
-    priceIN()
-}
 function cartDecreaseQuantity(){
+    
     let activeNodeDEC = document.activeElement.parentElement.children[1].textContent
     let activeNodeDECX = document.activeElement.parentElement.children[1]
     if (activeNodeDEC<=0) {
@@ -184,7 +166,6 @@ function cartDecreaseQuantity(){
         let temp = (Number.parseInt(activeNodeDEC))
         temp-=1
         activeNodeDECX.textContent=temp
-        totalPrice()
     }
 
 }
@@ -210,7 +191,7 @@ function removeCard(){
         nothingIsThere()
     }
 
-}
+    }
   
 function nothingIsThere(){
     let h1 = document.createElement("h1")
@@ -219,14 +200,23 @@ function nothingIsThere(){
     card.appendChild(h1)
 }
 
-function createCart(img,head,quantity,price){
-    let cart = `<tr class="cartContainer">
+
+
+
+function setCard(){
+    let afterLocCart = insertCart
+    let beforeLocCart = itemCard
+    let srcTemp = localStorage.getItem("img")
+    let head = localStorage.getItem("head")
+    let price = localStorage.getItem("price")
+    let quantity = localStorage.getItem("quantity")
+    let x = `<tr class="cartContainer">
     <td>
         <div class="cartInfo">
-            <img src="${img}">
+            <img src="${srcTemp}">
             <div>
                 <p> ${head} </p>
-                <small>PRICE: <strong class="price" >${price}</strong></small>
+                <small>PRICE: <strong>${price}</strong></small>
                 <br>
                 <button type="button" class="removeBTN" onclick="removeCard()">REM</button>
             </div>
@@ -239,11 +229,103 @@ function createCart(img,head,quantity,price){
     </td>
     <td id="cartPrice">${price}</td>
 </tr>`
-
-    // let parent = itemCard
-    // let elem = document.createElement(cart)
-
-    insertCart.innerHTML = cart
+    // let createCartXX = createCart()
+    afterLocCart.appendChild(x)
+    // afterLocCart.insertBefore(x,beforeLocCart)
 
 }
 
+
+function createCart(){
+    let clonedCart = itemCard
+    let setCartImgX = clonedCart.children[0].children[0].children[0]
+    // console.log(setCartImgX)
+    // console.log(setCartImgX)
+    setCartImg = clonedCart.children[0].children[0].children[0].src
+    let srcTemp = localStorage.getItem("img")
+    // console.log(srcTemp)
+    setCartImgX.src = srcTemp
+    // let urlImg = setCartImg.slice(0,26)
+    // console.log(urlImg)
+  
+    let setCartHeadingX = clonedCart.children[0].children[0].children[1].children[0]
+    // console.log(setCartHeadingX)
+    // setCartHeading = itemCard.children[0].children[0].children[1].children[0].textContent
+    setCartHeading = setCartHeadingX.textContent
+    let head = localStorage.getItem("head")
+    setCartHeadingX.textContent = head
+  
+    let setCartPriceX = clonedCart.children[0].children[0].children[1].children[1].children[0]
+    // console.log(setCartPriceX)
+    setCartPrice = clonedCart.children[0].children[0].children[1].children[1].children[0].textContent
+    let price = localStorage.getItem("price")
+    setCartPriceX.textContent = price
+  
+    let subPriceX = clonedCart.children[2]
+    // let subPrice = itemCard.children[2].textContent
+    subPriceX.textContent = price
+    // console.log(subPrice)
+  
+    let setCartQuantityX=clonedCart.children[1].children[1]
+    // console.log(setCartQuantityX)
+    setCartQuantity=clonedCart.children[1].children[1].textContent
+    let quantity = localStorage.getItem("quantity")
+    setCartQuantityX.textContent = quantity;
+    // console.log(clonedCart.children)
+    // createCart()
+    clearLocalStorage()
+}  
+
+function setLocalStorageItemData(img,head,quantity,price){
+    localStorage.setItem("img",img)
+    localStorage.setItem("head",head)
+    localStorage.setItem("quantity",quantity)
+    localStorage.setItem("price",price)
+    
+}
+
+function setCartLocalStorage() {
+    let setCartImgX = itemCard.children[0].children[0].children[0]
+    // console.log(setCartImgX)
+    setCartImg = itemCard.children[0].children[0].children[0].src
+    let srcTemp = localStorage.getItem("img")
+    // console.log(srcTemp)
+    setCartImgX.src = srcTemp
+    // let urlImg = setCartImg.slice(0,26)
+    // console.log(urlImg)
+
+    let setCartHeadingX = itemCard.children[0].children[0].children[1].children[0]
+    // console.log(setCartHeadingX)
+    // setCartHeading = itemCard.children[0].children[0].children[1].children[0].textContent
+    setCartHeading = setCartHeadingX.textContent
+    let head = localStorage.getItem("head")
+    setCartHeadingX.textContent = head
+
+    let setCartPriceX = itemCard.children[0].children[0].children[1].children[1].children[0]
+    // console.log(setCartPriceX)
+    setCartPrice = itemCard.children[0].children[0].children[1].children[1].children[0].textContent
+    let price = localStorage.getItem("price")
+    setCartPriceX.textContent = price
+
+    let subPriceX = itemCard.children[2]
+    // let subPrice = itemCard.children[2].textContent
+    subPriceX.textContent = price
+    // console.log(subPrice)
+
+    let setCartQuantityX=itemCard.children[1].children[1]
+    // console.log(setCartQuantityX)
+    setCartQuantity=itemCard.children[1].children[1].textContent
+    let quantity = localStorage.getItem("quantity")
+    setCartQuantityX.textContent = quantity;
+
+    // console.log(setCartImg)
+    // console.log(setCartHeading)
+    // console.log(setCartQuantity)
+    // console.log(setCartPrice)
+    createCart()
+    clearLocalStorage()
+}
+
+function clearLocalStorage(){
+    localStorage.clear()
+}
