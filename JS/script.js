@@ -220,30 +220,49 @@ function nothingIsThere(){
 }
 
 function createCart(img,head,quantity,price){
-    let cart = `<tr class="cartContainer">
-    <td>
-        <div class="cartInfo">
-            <img src="${img}">
-            <div>
-                <p> ${head} </p>
-                <small>PRICE: <strong class="price" >${price}</strong></small>
-                <br>
-                <button type="button" class="removeBTN" onclick="removeCard()">REM</button>
-            </div>
-        </div>
-    </td>
-    <td>
-        <button type="button" onclick="cartIncreaseQuantity()">▲</button>
-        <span>${quantity}</span>
-        <button type="button" onclick="cartDecreaseQuantity()">▼</button>
-    </td>
-    <td id="cartPrice">${price}</td>
-</tr>`
+    let row = document.createElement("tr")
+    row.className = "cartContainer"
+    row.innerHTML = ` <td>
+                    <div class="cartInfo">
+                        <img src="${img}">
+                        <div>
+                            <p> ${head} </p>
+                            <small>PRICE: <strong class="price" >${price}</strong></small>
+                            <br>
+                            <button type="button" class="removeBTN" onclick="removeCard()">REM</button>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <button type="button" onclick="cartIncreaseQuantity()">▲</button>
+                    <span>${quantity}</span>
+                    <button type="button" onclick="cartDecreaseQuantity()">▼</button>
+                </td>
+                <td id="cartPrice">${price}</td>`
+//     let cart = `<tr class="cartContainer">
+//     <td>
+//         <div class="cartInfo">
+//             <img src="${img}">
+//             <div>
+//                 <p> ${head} </p>
+//                 <small>PRICE: <strong class="price" >${price}</strong></small>
+//                 <br>
+//                 <button type="button" class="removeBTN" onclick="removeCard()">REM</button>
+//             </div>
+//         </div>
+//     </td>
+//     <td>
+//         <button type="button" onclick="cartIncreaseQuantity()">▲</button>
+//         <span>${quantity}</span>
+//         <button type="button" onclick="cartDecreaseQuantity()">▼</button>
+//     </td>
+//     <td id="cartPrice">${price}</td>
+// </tr>`
 
     // let parent = itemCard
     // let elem = document.createElement(cart)
 
-    insertCart.innerHTML = cart
+    insertCart.appendChild(row)
 
 }
 

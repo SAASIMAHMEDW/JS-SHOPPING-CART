@@ -45,6 +45,7 @@ body{
     display: flex;
     justify-content: center;
     text-align: center;
+    /* padding:inherit; */
     color: rgb(0, 0, 0);
     font-size: 40px;
     font-style: normal;
@@ -110,6 +111,7 @@ iframe{
     filter: blur(10px);
 }
 .container{
+    display: flex;
     position: absolute;
     z-index: -1;
     top: 150px;
@@ -229,7 +231,21 @@ iframe{
     font-size: 23px;
 }
 
-
+@media (min-width:300px) and (max-width:500px) {
+    .container{
+        top: 230px;
+    }
+    .counter{
+        right: 60px;
+        top: 25px; 
+    }
+}
+@media (min-width:250px) and (max-width:300px) {
+    .container{
+        top: 250px;
+    }
+   
+}
 
 /* =======================================cart item show========== ========================================  */
 .hideCart{
