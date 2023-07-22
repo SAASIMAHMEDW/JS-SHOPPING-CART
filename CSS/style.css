@@ -64,14 +64,27 @@ body{
 
 .bagIcon{
     background-color: rgb(0, 0, 0) ;
-    
     color: #ffffff;
-
     font-size: 30px;
     cursor: pointer;
-   size: 500px;
+    size: 500px;
 }
-
+.counter{
+    display: flex;
+    position: absolute;
+    right: 68px;
+    top: 10px;
+    font-size: 20px;
+    width: 29px;
+    height: 29px;
+    background-color: #e019ff;
+    border-radius: 50%;
+    justify-content: center;
+    align-items: center;
+}
+.hideCounter{
+    display: none;
+}
 .cartButton{
     background-color:rgb(0, 0, 0);
     width: 35px;
@@ -161,19 +174,7 @@ iframe{
     color: rgb(0, 0, 0);
     margin-left: 5px;
 }
-.counter{
-    display: flex;
-    position: absolute;
-    right: 68px;
-    top: 10px;
-    font-size: 20px;
-    width: 29px;
-    height: 29px;
-    background-color: #e019ff;
-    border-radius: 50%;
-    justify-content: center;
-    align-items: center;
-}
+
 .bagIcon:hover{
     color: #e019ff;
     background-color: rgb(0, 0, 0) ;
@@ -291,6 +292,13 @@ button{
     font-size: 20px;
     cursor: pointer;
 
+}
+.upBorder{
+    border-bottom: 2px solid #b300ff;
+    
+}
+.downBorder{
+    border-bottom: 2px solid #b300ff;
 }
 
 .removeBTN{

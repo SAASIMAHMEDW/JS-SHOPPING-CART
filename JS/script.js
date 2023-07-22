@@ -1,6 +1,6 @@
 
 // ======================= ORACLE ============================
-
+let prices = []
 
 // ====================== HOME JS CONNECTION=============================
 let con = document.getElementById("data")
@@ -20,7 +20,7 @@ let toggleBlur = 0
 // ======================== COMMON JS CONNECTION=============================
 let quantityCounter = document.getElementById("data")
 let price = document.getElementById("price")
-
+let hideCounter = document.querySelector(".counter")
 
 // ======================== CART JS CONNECTION=============================
 
@@ -50,6 +50,9 @@ function show(){
     // counterConnectin.style.display = "none"
     // console.log(showCart)
     showCard.classList.toggle("hideShowCard")
+    hideCounter.classList.toggle("hideCounter")
+    
+    // displayTotalContainer()
 
 }
 
@@ -105,7 +108,8 @@ function getItem(){
     let imgHeading = dataList[1].children[0].textContent
     let imgPrice = dataList[1].children[2].textContent
     let imgQuantity = dataList[1].children.data.textContent
-    
+    let totPrice = Number.parseInt(imgPrice)*Number.parseInt(imgQuantity)
+    prices.push(totPrice)
     // setCard(imgSource,imgHeading,imgPrice,imgQuantity)
     // dataItemList[0][0] = imgSource
     // dataItemList[0][1] = imgHeading
@@ -117,16 +121,28 @@ function getItem(){
     let countrerNum = document.activeElement.parentNode.parentNode.children[1].children[6].textContent
     counterIcrem(countrerNum)
     // ========= cart clone ===========
-    createCart(imgSource,imgHeading,imgQuantity,imgPrice)
+    createCart(imgSource,imgHeading,imgQuantity,imgPrice,totPrice)
+
+    // ============= crat total calculate ===========
+    calcTotal()
 }
 
 
 // ======================== CART JS========s=====================
+function displayTotalContainer(){
+    let child = document.children.length
+    console.log(child)
+    if(Number.parseInt(child) == 1 ){
+        disapear.style.display = "none";
+        nothingIsThere()
+    }
+
+}
 
 function cartIncreaseQuantity(){
-
     let activeNodeINCR = document.activeElement.parentElement.children[1].textContent
     let activeNodeINCRX = document.activeElement.parentElement.children[1]
+
     let actualPrice = document.activeElement.parentElement.parentElement.children[0].children[0].children[1].children[1].children[0].textContent.replace("₹","")
     let finalSubPrice = document.activeElement.parentElement.parentElement.children[2].textContent.replace("₹","")
     let finalSubPriceX = document.activeElement.parentElement.parentElement.children[2]
@@ -137,10 +153,50 @@ function cartIncreaseQuantity(){
     let temp = Number.parseInt(activeNodeINCR)
     temp+=1
     activeNodeINCRX.textContent = temp
-    cartUpdationINCR()
-    totalPrice()
+    // cartUpdationINCR()
+    // totalPrice()
     
     
+}
+
+function cartDecreaseQuantity(){
+
+    let activeNodeDEC = document.activeElement.parentElement.children[1].textContent
+    let activeNodeDECX = document.activeElement.parentElement.children[1]
+    // decChecker(activeNodeDECX)
+    if (activeNodeDEC<=0) {
+        let remCart = document.activeElement.parentElement.parentElement
+        card.removeChild(remCart)
+        if(Number.parseInt(card.children.length)<=0){
+            disapear.style.display = "none";
+            nothingIsThere()
+        }
+    }
+    else{
+        let temp = (Number.parseInt(activeNodeDEC))
+        temp-=1
+        activeNodeDECX.textContent=temp
+        // totalPrice()
+        let actualPrice = document.activeElement.parentElement.parentElement.children[0].children[0].children[1].children[1].children[0].textContent.replace("₹","")
+        let finalSubPrice = document.activeElement.parentElement.parentElement.children[2].textContent.replace("₹","")
+        let finalSubPriceX = document.activeElement.parentElement.parentElement.children[2]
+        // let priceTemp = ((Number.parseInt(actualPrice))-(Number.parseInt(finalSubPrice)))+priceSymbol
+        let priceTemp = ((Number.parseInt(finalSubPrice))-(Number.parseInt(actualPrice)))+priceSymbol
+        // console.log(priceTemp)
+        finalSubPriceX.textContent = priceTemp
+    }
+
+}
+
+function calcTotal(){
+    let add = (a,b)=>{
+        return a+b
+    }
+    let tempx = prices
+    let x = tempx.reduce(add)
+    // console.log(x)
+    let f = finalPrice
+    f.textContent = priceSymbol+x
 }
 
 function totalPrice(){
@@ -166,28 +222,14 @@ function priceIN(){
 function cartUpdationINCR(){
     priceIN()
 }
-function cartDecreaseQuantity(){
-    let activeNodeDEC = document.activeElement.parentElement.children[1].textContent
-    let activeNodeDECX = document.activeElement.parentElement.children[1]
-    if (activeNodeDEC<=0) {
-        let remCart = document.activeElement.parentElement.parentElement
-       
-        card.removeChild(remCart)
-        
-        if(Number.parseInt(card.children.length)<=0){
-            disapear.style.display = "none";
-            nothingIsThere()
-        }
-    }
-    else{
-        
-        let temp = (Number.parseInt(activeNodeDEC))
-        temp-=1
-        activeNodeDECX.textContent=temp
-        totalPrice()
-    }
 
+function decChecker(check){
+    let temp = check.children.length
+    if(temp<=0){
+        card.removeChild(check)
+    }
 }
+
 
 function booked(){
     let conStatus = confirm("DO YOU WANT TO CONFIRM YOUR ORDER")
@@ -211,6 +253,7 @@ function removeCard(){
     }
 
 }
+
   
 function nothingIsThere(){
     let h1 = document.createElement("h1")
@@ -219,7 +262,7 @@ function nothingIsThere(){
     card.appendChild(h1)
 }
 
-function createCart(img,head,quantity,price){
+function createCart(img,head,quantity,price,subPrice){
     let row = document.createElement("tr")
     row.className = "cartContainer"
     row.innerHTML = ` <td>
@@ -234,11 +277,11 @@ function createCart(img,head,quantity,price){
                     </div>
                 </td>
                 <td>
-                    <button type="button" onclick="cartIncreaseQuantity()">▲</button>
+                    <button class="upBorder" type="button" onclick="cartIncreaseQuantity()">▲</button>
                     <span>${quantity}</span>
-                    <button type="button" onclick="cartDecreaseQuantity()">▼</button>
+                    <button class="downBorder" type="button" onclick="cartDecreaseQuantity()">▼</button>
                 </td>
-                <td id="cartPrice">${price}</td>`
+                <td id="cartPrice">${subPrice+priceSymbol}</td>`
 //     let cart = `<tr class="cartContainer">
 //     <td>
 //         <div class="cartInfo">
