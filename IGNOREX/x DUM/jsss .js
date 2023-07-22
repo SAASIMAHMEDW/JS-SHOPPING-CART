@@ -10,6 +10,12 @@ let showCart = document.getElementById("toggleCart")
 let showCard = document.getElementById("cardItemShow")
 let finalPrice = document.querySelector(".priceLeft")
 let toggleBlur = 0
+// let showIframe = document.querySelector(".frame")
+
+// let imgSource
+// let imgHeading
+// let imgPrice
+// let imgQuantity
 
 // ======================== COMMON JS CONNECTION=============================
 let quantityCounter = document.getElementById("data")
@@ -24,9 +30,9 @@ let priceSymbol = "₹"
 let card = document.getElementById("mainCard")
 let disapear = document.getElementsByClassName("totalPrice")[0]
 let cartInfo = document.getElementsByClassName("cartInfo")
-
+// let itemCard = document.querySelector(".cartContainer")
 let itemCard = document.getElementsByClassName("cartContainer")[0]
-
+// console.log(itemCard)
 let insertCart = document.querySelector(".insertBeforeCart")
 let setCartImg
 let setCartHeading
@@ -38,11 +44,15 @@ let setCartQuantity
 // ======================== HOME JS=============================
 
 function show(){
-
+    // showIframe.style.display = "block";
     showCart.classList.toggle("showHideCart")
+    // showCart.style.display = "block"
+    // counterConnectin.style.display = "none"
+    // console.log(showCart)
     showCard.classList.toggle("hideShowCard")
     hideCounter.classList.toggle("hideCounter")
     
+    // displayTotalContainer()
     countCard()
     
 
@@ -59,6 +69,7 @@ function counterIcrem(num){
 function homeIncreaseQuantity(){
     let activeNode = document.activeElement.nextElementSibling.textContent
     let activeNodeINCRX = document.activeElement.nextElementSibling
+
     let temp = (Number.parseInt(activeNode)) + 1
     activeNodeINCRX.textContent = temp
 
@@ -101,7 +112,13 @@ function getItem(){
     let imgQuantity = dataList[1].children.data.textContent
     let totPrice = Number.parseInt(imgPrice)*Number.parseInt(imgQuantity)
     prices.push(totPrice)
-   
+    // setCard(imgSource,imgHeading,imgPrice,imgQuantity)
+    // dataItemList[0][0] = imgSource
+    // dataItemList[0][1] = imgHeading
+    // dataItemList[0][2] = imgQuantity
+    // dataItemList[0][3] = imgPrice
+    // console.log(dataItemList[0])
+    // console.log(imgPrice)
     // ========== home cart counter ============
     let countrerNum = document.activeElement.parentNode.parentNode.children[1].children[6].textContent
     counterIcrem(countrerNum)
@@ -119,7 +136,9 @@ function calcCartTotal(){
     let add = (a,b)=>{
         return a+b
     }
+    // let tempx = prices
     let x = prices.reduce(add)
+    // console.log(x)
     let f = finalPrice
     f.textContent = priceSymbol+x
 }
@@ -143,10 +162,13 @@ function cartIncreaseQuantity(){
     let finalSubPriceX = document.activeElement.parentElement.parentElement.children[2]
     let priceTemp = ((Number.parseInt(actualPrice))+(Number.parseInt(finalSubPrice)))+priceSymbol
     finalSubPriceX.textContent = priceTemp
-
+    // console.log(actualPrice)
+    // console.log(finalSubPrice)
     let temp = Number.parseInt(activeNodeINCR)
     temp+=1
     activeNodeINCRX.textContent = temp
+    // cartUpdationINCR()
+    // totalPrice()
     updatecartpriceIcre(actualPrice)
     
 }
@@ -162,6 +184,7 @@ function cartDecreaseQuantity(){
 
     let activeNodeDEC = document.activeElement.parentElement.children[1].textContent
     let activeNodeDECX = document.activeElement.parentElement.children[1]
+    // decChecker(activeNodeDECX)
     if (activeNodeDEC<=0) {
         let remCart = document.activeElement.parentElement.parentElement
         card.removeChild(remCart)
@@ -174,10 +197,13 @@ function cartDecreaseQuantity(){
         let temp = (Number.parseInt(activeNodeDEC))
         temp-=1
         activeNodeDECX.textContent=temp
+        // totalPrice()
         let actualPrice = document.activeElement.parentElement.parentElement.children[0].children[0].children[1].children[1].children[0].textContent.replace("₹","")
         let finalSubPrice = document.activeElement.parentElement.parentElement.children[2].textContent.replace("₹","")
         let finalSubPriceX = document.activeElement.parentElement.parentElement.children[2]
+        // let priceTemp = ((Number.parseInt(actualPrice))-(Number.parseInt(finalSubPrice)))+priceSymbol
         let priceTemp = ((Number.parseInt(finalSubPrice))-(Number.parseInt(actualPrice)))+priceSymbol
+        // console.log(priceTemp)
         finalSubPriceX.textContent = priceTemp
         updatecartpriceDecr(actualPrice)
     }
@@ -281,6 +307,28 @@ function createCart(img,head,quantity,price,subPrice){
                     <button class="downBorder" type="button" onclick="cartDecreaseQuantity()">▼</button>
                 </td>
                 <td id="cartPrice">${subPrice+priceSymbol}</td>`
+//     let cart = `<tr class="cartContainer">
+//     <td>
+//         <div class="cartInfo">
+//             <img src="${img}">
+//             <div>
+//                 <p> ${head} </p>
+//                 <small>PRICE: <strong class="price" >${price}</strong></small>
+//                 <br>
+//                 <button type="button" class="removeBTN" onclick="removeCard()">REM</button>
+//             </div>
+//         </div>
+//     </td>
+//     <td>
+//         <button type="button" onclick="cartIncreaseQuantity()">▲</button>
+//         <span>${quantity}</span>
+//         <button type="button" onclick="cartDecreaseQuantity()">▼</button>
+//     </td>
+//     <td id="cartPrice">${price}</td>
+// </tr>`
+
+    // let parent = itemCard
+    // let elem = document.createElement(cart)
 
     insertCart.appendChild(row)
 
@@ -288,16 +336,17 @@ function createCart(img,head,quantity,price,subPrice){
 
 function countCard(){
     let x = insertCart.children.length
-   
+    // console.log(x);
     if(x==0){
         nothingIsThere()
-       
+        // disapear.style.display = "none";
     }
     let count = Number.parseInt(finalPrice.textContent)
     if(count == 0){
+        // nothingIsThere()
         disapear.style.display = "none";
     }
 
-    
+    // console.log(insertCart.children.length)/
 }
 
