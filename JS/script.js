@@ -43,7 +43,7 @@ function show(){
     showCard.classList.toggle("hideShowCard")
     hideCounter.classList.toggle("hideCounter")
     
-    countCard()
+   // countCard()
     
 
 }
